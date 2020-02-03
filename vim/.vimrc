@@ -9,23 +9,30 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'preservim/nerdtree'
+Plugin 'ycm-core/YouCompleteMe'
+let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+let g:ycm_key_list_accept_completion = ['<C-y>']
+let g:ycm_global_ycm_extra_conf = '/home/mazin/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+"=====================================================================
+"Ultisnips config
+" Track the engine.
+Plugin 'SirVer/ultisnips'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+"=====================================================================
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -42,43 +49,46 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
-set exrc
-set secure
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set noexpandtab
-set colorcolumn=80
-highlight ColorColumn ctermbg=darkgray
-syntax on
-filetype plugin on
-set number
-let g:ycm_confirm_extra_conf = 1
-let g:ycm_extra_conf_globlist = ['/home/mazin/.ycm_extra_conf.py']
-let g:ycm_seed_identifiers_with_syntax=1
-
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" Prevent UltiSnips from removing our carefully-crafted mappings.
-let g:UltiSnipsMappingsToIgnore = ['autocomplete']
-
-
-let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
-let g:ycm_key_list_accept_completion = ['<C-y>']
-set guifont=Iosevka:h10
-
-map <C-n> :NERDTreeToggle<CR>
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+"
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd vimenter * NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+set number
+syntax on
+set colorcolumn=80
+highlight ColorColumn ctermbg=darkgray
+"==========================================
+"Pair completion for brackets and other stuff
+let s:pairs={
+            \'<': '>',
+            \'{': '}',
+            \'[': ']',
+            \'(': ')',
+            \'«': '»',
+            \'„': '“',
+            \'“': '”',
+            \'‘': '’',
+        \}
+call map(copy(s:pairs), 'extend(s:pairs, {v:val : v:key}, "keep")')
+function! InsertPair(left, ...)
+    let rlist=reverse(map(split(a:left, '\zs'), 'get(s:pairs, v:val, v:val)'))
+    let opts=get(a:000, 0, {})
+    let start   = get(opts, 'start',   '')
+    let lmiddle = get(opts, 'lmiddle', '')
+    let rmiddle = get(opts, 'rmiddle', '')
+    let end     = get(opts, 'end',     '')
+    let prefix  = get(opts, 'prefix',  '')
+    let start.=prefix
+    let rmiddle.=prefix
+    let left=start.a:left.lmiddle
+    let right=rmiddle.join(rlist, '').end
+    let moves=repeat("\<Left>", len(split(right, '\zs')))
+    return left.right.moves
+endfunction
+ noremap! <expr> ,f   InsertPair('{')
+ noremap! <expr> ,h   InsertPair('[')
+ noremap! <expr> ,s   InsertPair('(')
+ noremap! <expr> ,u   InsertPair('<')
+ "==============================================
