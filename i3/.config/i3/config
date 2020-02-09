@@ -177,19 +177,19 @@ bar {
         status_command i3status
 	position top
    colors {
-           background #222222
-           statusline #eeeeee
-           separator #666666
+           background #212121
+           statusline #ffffff
+           separator #808080
            #                  border  backgr. text
-           focused_workspace  #808080 #2e5b80 #ffffff
-           active_workspace   #333333 #2e5b80 #ffffff
+           focused_workspace  #333333 #333333 #ffffff
+           active_workspace   #333333 #333333 #ffffff
            inactive_workspace #333333 #222222 #888888
            urgent_workspace   #2f343a #900000 #ffffff
         }
 }
 
 # Set the wallpaper using feh
-exec_always feh --bg-fill /home/mazin/Downloads/9ibz1cnnwdp31.png
+exec_always feh --bg-fill /home/mazin/Downloads/b29ee6dadb9ef7c77804b7c74a822fdd953582ec_s2_n1.jpg fill
 exec xrdb merge .Xresources
 
 # Colors

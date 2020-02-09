@@ -10,6 +10,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdtree'
+autocmd vimenter * NERDTree
 Plugin 'itchyny/lightline.vim'
 let g:lightline = {
       \ 'colorscheme': 'wombat',
@@ -66,4 +67,9 @@ syntax on
 set colorcolumn=80
 highlight ColorColumn ctermbg=darkgray
 set noshowmode
+set tabstop=4
+set autoindent
+set smartindent
+set shiftwidth=4
+set expandtab
 
