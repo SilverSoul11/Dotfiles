@@ -23,6 +23,7 @@ let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 let g:ycm_key_list_accept_completion = ['<C-y>']
 let g:ycm_global_ycm_extra_conf = '/home/mazin/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_python_binary_path = '/usr/bin/python3'
 "=====================================================================
 "Ultisnips config
 " Track the engine.
