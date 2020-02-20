@@ -59,9 +59,9 @@ flags = [
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
 'c++',
-'-isystem', '/usr/include/c++/9.2.0',
-'-isystem', '/usr/include/c++/9.2.0/x86_64-pc-linux-gnu',
-'-isystem', '/usr/include/c++/9.2.0/backward',
+'-isystem', '/usr/include/c++/9.2.1'
+'-isystem', '/usr/include/c++/9.2.1/x86_64-pc-linux-gnu',
+'-isystem', '/usr/include/c++/9.2.1/backward',
 '-isystem', '/usr/local/include',
 '-isystem', '/usr/include',
 '-isystem',
