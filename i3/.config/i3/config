@@ -215,8 +215,6 @@ bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 ## Take screenshots
 bindsym --release $mod+z exec scrot -s
 
-## automount
-exec devmon
 
 bindsym $mod+Print exec picom -b --backend xrender && nvidia-settings --load-config-only --config=~/.nvidia-settings-rc 
 bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
@@ -225,6 +223,6 @@ exec_always picom -b
 ###############################################
 #GPU Overclock Settings
 exec_always nvidia-settings --load-config-only
-exec_always nvidia-settings -c :0 -a '[gpu:0]/GPUGraphicsClockOffsetAllPerformanceLevels=150'
+exec_always nvidia-settings -c :0 -a '[gpu:0]/GPUGraphicsClockOffsetAllPerformanceLevels=145'
 exec_always nvidia-settings -c :0 -a '[gpu:0]/GPUMemoryTransferRateOffsetAllPerformanceLevels=2000'
 
