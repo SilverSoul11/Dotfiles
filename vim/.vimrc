@@ -18,6 +18,8 @@ let g:lightline = {
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'nvie/vim-flake8'
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 let g:ycm_key_list_accept_completion = ['<C-y>']
@@ -68,9 +70,9 @@ syntax on
 set colorcolumn=80
 highlight ColorColumn ctermbg=darkgray
 set noshowmode
+
 set tabstop=4
 set autoindent
 set smartindent
 set shiftwidth=4
 set expandtab
-
