@@ -19,6 +19,10 @@ font pango:Noto Sans 12
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:Hack 12
 
+#set wallpaper
+#exec_always feh --bg-fill /home/mazin/Downloads/967275.png fill
+exec_always ~/.fehbg
+
 #Needed for i3-gaps
 #hide_edge_borders both
 for_window [class="^.*"] border pixel 5
@@ -102,41 +106,34 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "Desktop"
-set $ws2 "Steam"
-set $ws3 "Code"
-set $ws4 "Firefox"
-set $ws5 "Music"
-set $ws6 "Discord"
-set $ws7 "OS"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 "  Terminal"
+set $ws2 "龜 Firefox" 
+set $ws3 "  Code"
+set $ws4 " Discord"
+set $ws5 " Music"
+set $ws6 " Calculator"
+set $ws7 " Video"
+set $ws8 " Misc"
 
-# switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-
+    # Switch to workspace
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
+    bindsym $mod+5 workspace $ws5
+    bindsym $mod+6 workspace $ws6
+    bindsym $mod+7 workspace $ws7
+    bindsym $mod+8 workspace $ws8
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace $ws1
+    bindsym $mod+Shift+2 move container to workspace $ws2
+    bindsym $mod+Shift+3 move container to workspace $ws3
+    bindsym $mod+Shift+4 move container to workspace $ws4
+    bindsym $mod+Shift+5 move container to workspace $ws5
+    bindsym $mod+Shift+6 move container to workspace $ws6
+    bindsym $mod+Shift+7 move container to workspace $ws7
+    bindsym $mod+Shift+8 move container to workspace $ws8
+ 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -189,7 +186,6 @@ bar {
 }
 
 # Set the wallpaper using feh
-exec_always feh --bg-fill /home/mazin/Downloads/b29ee6dadb9ef7c77804b7c74a822fdd953582ec_s2_n1.jpg fill
 exec xrdb merge .Xresources
 
 # Colors
@@ -219,10 +215,14 @@ bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 ## Take screenshots
 bindsym --release $mod+z exec scrot -s
 
-## automount
-exec devmon
 
 bindsym $mod+Print exec picom -b --backend xrender && nvidia-settings --load-config-only --config=~/.nvidia-settings-rc 
 bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
 exec_always picom -b
+
+###############################################
+#GPU Overclock Settings
 exec_always nvidia-settings --load-config-only
+exec_always nvidia-settings -c :0 -a '[gpu:0]/GPUGraphicsClockOffsetAllPerformanceLevels=145'
+exec_always nvidia-settings -c :0 -a '[gpu:0]/GPUMemoryTransferRateOffsetAllPerformanceLevels=2000'
+
