@@ -77,5 +77,4 @@ set autoindent
 set smartindent
 set shiftwidth=4
 set expandtab
-<<<<<<< HEAD
 colorscheme dracula
