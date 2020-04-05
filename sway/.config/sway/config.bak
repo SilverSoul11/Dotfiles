@@ -20,14 +20,18 @@ set $term termite
 # Note: it's recommended that you pass the final command to sway
 set $menu j4-dmenu-desktop --dmenu="bemenu -i --fn "pango:Noto Sans 12"" --term="termite"
 
+# Include pywall colors
+include "$HOME/.cache/wal/colors-sway"
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /home/mazin/Pictures/pGBxfAT.jpg fill
-#output * bg /home/mazin/Pictures/vinland.png fill
-#output eDP-1 bg /home/mazin/Pictures/870874.jpg fill
-output eDP-1 bg /home/mazin/Pictures/alter5.png fill
+# output * bg /home/mazin/Pictures/vinland.png fill
+ output eDP-1 bg $wallpaper fill
+# output eDP-1 bg /home/mazin/Pictures/165087.jpg fill
 output eDP-1 subpixel rgb
+#output eDP-1 adaptive_sync on
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -128,14 +132,14 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 #
 #
 
-set $ws1 "1: Terminal"
-set $ws2 "2: Firefox" 
-set $ws3 "3: Code"
-set $ws4 "4: Discord"
-set $ws5 "5: Music"
-set $ws6 "6: Calculator"
-set $ws7 "7: Video"
-set $ws8 "8: Misc"
+set $ws1 "  Terminal"
+set $ws2 "龜 Firefox" 
+set $ws3 "  Code"
+set $ws4 " Discord"
+set $ws5 " Music"
+set $ws6 " Calculator"
+set $ws7 " Video"
+set $ws8 " Misc"
 
     # Switch to workspace
     bindsym $mod+1 workspace $ws1
@@ -219,6 +223,10 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+
+#Shortcut to lock screen
+bindsym $mod+Shift+p exec swaylock -u -i ~/Pictures/lock-blur.jpg 
+
 #
 # Status Bar:
 #
@@ -228,26 +236,14 @@ bar {
     # When the status_command prints a new line to stdout, swaybarhintfull updates.
     # The default just shows the current date and time.
     status_command i3status
-
-    colors {
-    	   background #121212
-           statusline #eeeeee
-           separator #666666
-           #                  border  backgr. text
-           focused_workspace  #1d1d1d #373737 #ffffff
-           active_workspace   #181818 #5f6767  #ffffff
-           inactive_workspace #181818 #181818 #888888
-           urgent_workspace   #2f343a #90000a #ffffff
-    }
 }
 
-# colour of border, background, text, indicator, and child_border
-client.focused          #add8e6 #ffffff #2f343f #bf616a #707070
-client.focused_inactive #202020 #ffffff #2f343f #2f343f #232323
-client.unfocused        #202020 #ffffff #2f343f #2f343f #232323
-client.urgent           #2f343f #404040 #2f343f #2f343f #808080
-client.placeholder      #2f343f #303030 #2f343f #2f343f #707070
-client.background       #202020
+# class                 border    backgr.   text    indicator child_border
+client.focused          $coloract $coloract $white  $split $coloract
+client.focused_inactive $coloract $coloract $white  $split $coloract
+client.unfocused        $colorin  $colorin  #888888 $split $colorin
+client.urgent           #2f343a   #900000   $white  #900000 #900000
+client.placeholder      #000000   #0c0c0c   $white  #000000 #0c0c0c
 
 include /etc/sway/config.d/*
 
@@ -260,10 +256,9 @@ smart_borders on
 set $gnome-schema org.gnome.desktop.interface
 
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'Materia-dark-compact'
-    gsettings set $gnome-schema icon-theme 'Papirus-Dark'
+    gsettings set $gnome-schema gtk-theme 'Flat Color'
+#    gsettings set $gnome-schema icon-theme 'Your icon theme'
     gsettings set $gnome-schema cursor-theme 'Breeze_Snow'
-    gsettings set $gnome-schema font-name 'Noto Sans medium 12'
 }
 
 
