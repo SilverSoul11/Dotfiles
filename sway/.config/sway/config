@@ -18,15 +18,13 @@ set $right l
 set $term termite
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu j4-dmenu-desktop --dmenu="bemenu -i --fn "pango:Noto Sans 12"" --term="termite"
+set $menu j4-dmenu-desktop --dmenu='bemenu -i --nb "#181818" --fb "#262626" --nf "#888888" --hb "#373737" --hf "#fdfdfd"  --tf "#ef5350" --tb "#373737" --fn "pango:Noto Sans medium 12"' --term='termite'
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg /home/mazin/Pictures/pGBxfAT.jpg fill
-#output * bg /home/mazin/Pictures/vinland.png fill
-#output eDP-1 bg /home/mazin/Pictures/870874.jpg fill
-output eDP-1 bg /home/mazin/Pictures/alter5.png fill
+output * bg /home/mazin/Pictures/998105.png fill
+output eDP-1 bg /home/mazin/Pictures/asuka.png fill
 output eDP-1 subpixel rgb
 # Example configuration:
 #
@@ -71,6 +69,11 @@ bindsym XF86AudioPrev exec playerctl previous
 input * xkb_layout "us,gb"
 input "1:1:AT_Translated_Set_2_keyboard" {
 	xkb_layout "gb"
+}
+
+input "9610:54:SINOWEALTH Wired Gaming Mouse" {
+    accel_profile flat
+    pointer_accel -1
 }
 
 
@@ -228,6 +231,8 @@ bar {
     # When the status_command prints a new line to stdout, swaybarhintfull updates.
     # The default just shows the current date and time.
     status_command i3status
+    strip_workspace_numbers no
+    
 
     colors {
     	   background #121212

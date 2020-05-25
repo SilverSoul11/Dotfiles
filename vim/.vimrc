@@ -24,9 +24,22 @@ Plugin 'nvie/vim-flake8'
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 let g:ycm_key_list_accept_completion = ['<C-y>']
+map <C-]> :YcmCompleter GoToImprecise<CR>
 let g:ycm_global_ycm_extra_conf = '/home/mazin/.ycm_extra_conf.py'
+
+" Gecko includes a .ycm_extra_conf.py file in the root directory.
+" Update this glob path to your Gecko source code location.
+let g:ycm_extra_conf_globlist = ['~/Dev/gecko/*']
+
+" This is less secure, but this option will load any ycm config
+" file found without a confirmation.
+" let g:ycm_confirm_extra_conf = 0
+
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_semantic_triggers = {
+  \   'python': [ 'import ' ]
+  \ }
 "=====================================================================
 "Ultisnips config
 " Track the engine.
