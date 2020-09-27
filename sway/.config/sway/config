@@ -18,20 +18,21 @@ set $right l
 set $term termite
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu j4-dmenu-desktop --dmenu='bemenu -i --nb "#181818" --fb "#262626" --nf "#888888" --hb "#373737" --hf "#fdfdfd"  --tf "#ef5350" --tb "#373737" --fn "pango:Noto Sans medium 12"' --term='termite'
+set $menu j4-dmenu-desktop --dmenu='bemenu -i --nb "#181818" --fb "#262626" --nf "#888888" --hb "#373737" --hf "#fdfdfd"  --tf "#ef5350" --tb "#373737" --fn "pango:Noto Sans 12"' --term='termite'
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/mazin/Pictures/998105.png fill
-output eDP-1 bg /home/mazin/Pictures/asuka.png fill
+output * bg /home/mazin/Documents/eeqgyy7.jpg fill
+output eDP-1 bg /home/mazin/Pictures/85fbdc259b6bf3c45dfa6d3feaa95b05.jpg fill
 output eDP-1 subpixel rgb
+
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-font pango:Noto Sans Display 13.3
+font pango: Noto Sans 13
 ### Idle configuration
 #
 # Example configuration:
@@ -268,7 +269,10 @@ exec_always {
     gsettings set $gnome-schema gtk-theme 'Materia-dark-compact'
     gsettings set $gnome-schema icon-theme 'Papirus-Dark'
     gsettings set $gnome-schema cursor-theme 'Breeze_Snow'
-    gsettings set $gnome-schema font-name 'Noto Sans medium 12'
+    gsettings set $gnome-schema font-name 'Noto Sans 12'
 }
 
+exec gammastep -O 5800
+
+# Sway idle setup
 
