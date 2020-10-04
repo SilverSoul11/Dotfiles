@@ -1,3 +1,17 @@
+"__/\\\________/\\\___/\\\\\\\\\\\___/\\\\____________/\\\\_        
+"_\/\\\_______\/\\\__\/////\\\///___\/\\\\\\________/\\\\\\_       
+" _\//\\\______/\\\_______\/\\\______\/\\\//\\\____/\\\//\\\_      
+"  __\//\\\____/\\\________\/\\\______\/\\\\///\\\/\\\/_\/\\\_     
+"   ___\//\\\__/\\\_________\/\\\______\/\\\__\///\\\/___\/\\\_    
+"    ____\//\\\/\\\__________\/\\\______\/\\\____\///_____\/\\\_   
+"     _____\//\\\\\___________\/\\\______\/\\\_____________\/\\\_  
+"      ______\//\\\_________/\\\\\\\\\\\__\/\\\_____________\/\\\_ 
+"       _______\///_________\///////////___\///______________\///__
+"  vim.rc file 
+"
+
+
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -21,6 +35,9 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'dracula/vim'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'nvie/vim-flake8'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 let g:ycm_key_list_accept_completion = ['<C-y>']
