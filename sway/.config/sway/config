@@ -23,7 +23,7 @@ set $menu j4-dmenu-desktop --dmenu='bemenu -i --nb "#181818" --fb "#262626" --nf
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/mazin/Pictures/829483.jpg fill
+output * bg /home/mazin/Pictures/chitoge17.png fill
 output eDP-1 bg /home/mazin/Pictures/chitoge11.png fill
 output eDP-1 subpixel rgb
 
@@ -52,6 +52,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+# bindsym XF86Display 
 
 input "2:7:SynPS/2_Synaptics_TouchPad" {
     dwt enabled

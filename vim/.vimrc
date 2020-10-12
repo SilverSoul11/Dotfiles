@@ -24,20 +24,21 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdtree'
-autocmd vimenter * NERDTree
 Plugin 'itchyny/lightline.vim'
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'dracula/vim'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
+Plugin 'dracula/vim', { 'name': 'dracula' }
 
+
+autocmd vimenter * NERDTree
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 let g:ycm_key_list_accept_completion = ['<C-y>']
@@ -108,3 +109,4 @@ set smartindent
 set shiftwidth=4
 set expandtab
 colorscheme dracula
+
