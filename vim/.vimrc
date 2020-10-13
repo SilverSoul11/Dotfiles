@@ -32,12 +32,12 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
-Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'dracula/vim'
 
 
 autocmd vimenter * NERDTree
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'dracula',
       \ }
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
@@ -92,6 +92,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 "
 "
+
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
