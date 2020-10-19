@@ -273,7 +273,7 @@ include /etc/sway/config.d/*
                              gsettings set $gnome-schema font-name 'Noto Sans 12'
                              }
 
-                             exec gammastep -O 5800
+                             exec gammastep -O 6000
 
 # Sway idle setup
 
