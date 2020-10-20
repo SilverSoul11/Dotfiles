@@ -110,4 +110,5 @@ set smartindent
 set shiftwidth=4
 set expandtab
 colorscheme dracula
-
+set encoding=utf-8 
+set fileencoding=utf-8
