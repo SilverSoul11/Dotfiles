@@ -23,7 +23,6 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'itchyny/lightline.vim'
 Plugin 'airblade/vim-gitgutter'
@@ -35,7 +34,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'dracula/vim'
 Plugin 'tlhr/anderson.vim'
-
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 autocmd vimenter * NERDTree
 let g:lightline = {
       \ 'colorscheme': 'dracula',
@@ -58,6 +58,10 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_semantic_triggers = {
   \   'python': [ 'import ' ]
+  \ }
+let g:ycm_filetype_whitelist = {
+  \ '*': 1,
+  \ 'ycm_nofiletype': 1
   \ }
 "=====================================================================
 "Ultisnips config
