@@ -24,7 +24,7 @@ set $menu j4-dmenu-desktop --dmenu='bemenu -i --nb "#181818" --fb "#262626" --nf
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /home/mazin/Pictures/chitoge17.png fill
-output eDP-1 bg /home/mazin/mpv-shot0012.jpg fill
+output eDP-1 bg "/home/mazin/Pictures/asuka-hat.png" fill
 output eDP-1 subpixel rgb
 
 # Example configuration:
@@ -241,7 +241,7 @@ bar {
                 statusline #eeeeee
                 separator #666666
 #                  border  backgr. text
-                focused_workspace  #1d1d1d #FFF9C4   #000000
+                focused_workspace  #1d1d1d #ef9a9a   #000000
                 active_workspace   #181818 #5f6767  #ffffff
                 inactive_workspace #181818 #181818  #888888
                 urgent_workspace   #2f343a #ffcdd2  #000000

@@ -32,6 +32,8 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'dracula/vim'
 
 
@@ -57,6 +59,10 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_semantic_triggers = {
   \   'python': [ 'import ' ]
+  \ }
+let g:ycm_filetype_whitelist = {
+  \ '*': 1,
+  \ 'ycm_nofiletype': 1
   \ }
 "=====================================================================
 "Ultisnips config
