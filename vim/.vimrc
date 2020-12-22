@@ -12,31 +12,35 @@
 
 
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
-" set the runtime path to include Vundle and initialize
-set rtp+=/usr/share/vim/vimfiles/autoload/vundle.vim
-call vundle#begin()
+" Make sure you use single quotes
 
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+Plug 'preservim/nerdtree'
+Plug 'itchyny/lightline.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'ycm-core/YouCompleteMe', {'do':'./install.py'}
+Plug 'jiangmiao/auto-pairs'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'nvie/vim-flake8'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'dracula/vim'
+Plug 'tlhr/anderson.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
-" let Vundle manage Vundle, required
-Plugin 'preservim/nerdtree'
-Plugin 'itchyny/lightline.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'nvie/vim-flake8'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'dracula/vim'
-Plugin 'tlhr/anderson.vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-autocmd vimenter * NERDTree
+" Initialize plugin system
+call plug#end()
+
+
+" ========================================================================
+map <C-n> :NERDTreeToggle<CR>
 let g:lightline = {
       \ 'colorscheme': 'dracula',
       \ }
@@ -59,17 +63,13 @@ let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_semantic_triggers = {
   \   'python': [ 'import ' ]
   \ }
+
 let g:ycm_filetype_whitelist = {
   \ '*': 1,
   \ 'ycm_nofiletype': 1
   \ }
-"=====================================================================
-"Ultisnips config
-" Track the engine.
-Plugin 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -80,24 +80,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 "=====================================================================
 
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+" Auto commands and set options
 "
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-"
-
+autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -108,7 +93,7 @@ syntax on
 set colorcolumn=80
 highlight ColorColumn ctermbg=darkgray
 set noshowmode
-
+set laststatus=2 
 set tabstop=4
 set autoindent
 set smartindent
@@ -118,4 +103,3 @@ colorscheme dracula
 set encoding=utf-8 
 set fileencoding=utf-8
 
-map <C-n> :NERDTreeToggle<CR>
