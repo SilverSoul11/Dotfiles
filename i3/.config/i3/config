@@ -175,6 +175,7 @@ bar {
         i3bar_command i3bar -t
         position top
         strip_workspace_numbers yes
+        tray_output none
         colors {
             background #121212
                 statusline #ffffff
@@ -220,5 +221,6 @@ bindsym --release $mod+z exec scrot -s
 
 bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
 exec_always --no-startup-id picom --experimental-backends
+exec_always --no-startup-id unclutter
 ###############################################
 #GPU Overclock Settings
