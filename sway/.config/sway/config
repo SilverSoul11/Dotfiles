@@ -24,7 +24,7 @@ set $menu j4-dmenu-desktop --dmenu='bemenu -i --nb "#181818" --fb "#262626" --nf
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /home/mazin/Pictures/chitoge17.png fill
-output eDP-1 bg "/home/mazin/Pictures/asuka-hat.png" fill
+output eDP-1 bg "/home/mazin/Documents/dsf.png" fill
 output eDP-1 subpixel rgb
 
 # Example configuration:
