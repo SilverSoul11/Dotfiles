@@ -12,10 +12,6 @@
 
 
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
@@ -36,6 +32,8 @@ Plug 'dracula/vim'
 Plug 'tlhr/anderson.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -64,6 +62,11 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_semantic_triggers = {
   \   'python': [ 'import ' ]
+  \ }
+
+let g:ycm_filetype_whitelist = {
+  \ '*': 1,
+  \ 'ycm_nofiletype': 1
   \ }
 
 " Snippets are separated from the engine. Add this if you want them:
