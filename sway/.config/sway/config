@@ -15,7 +15,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term termite
+set $term alacritty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 set $menu j4-dmenu-desktop --dmenu='bemenu -i --nb "#181818" --fb "#262626" --nf "#888888" --hb "#373737" --hf "#fdfdfd"  --tf "#ef5350" --tb "#373737" --fn "pango:Noto Sans 12"' --term='termite'
@@ -23,8 +23,8 @@ set $menu j4-dmenu-desktop --dmenu='bemenu -i --nb "#181818" --fb "#262626" --nf
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/mazin/Pictures/chitoge17.png fill
-output eDP-1 bg "/home/mazin/Documents/dsf.png" fill
+output * bg /home/mazin/Pictures/870874.jpg fill
+output eDP-1 bg "/home/mazin/Pictures/rin.jpg" fill
 output eDP-1 subpixel rgb
 
 # Example configuration:
@@ -68,6 +68,7 @@ input "TPPS/2 Elan TrackPoint" {
         pointer_accel -1	
 }
 
+input * accel_profile flat
 input * xkb_layout "us,gb"
 input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_layout "gb"
