@@ -34,6 +34,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'dense-analysis/ale'
 
 " Initialize plugin system
 call plug#end()
@@ -67,8 +68,11 @@ let g:ycm_semantic_triggers = {
 let g:ycm_filetype_whitelist = {
   \ '*': 1,
   \ 'ycm_nofiletype': 1
-  \ }
+   \ }
 
+let g:ycm_filetype_blacklist = {
+            \ 'help': 1,
+            \ 'vimwiki': 1}
 " Snippets are separated from the engine. Add this if you want them:
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -78,6 +82,15 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+
+let g:ale_fixers = ['clangtidy']
+" Write this in your vimrc file
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
 "=====================================================================
 
 " Auto commands and set options
