@@ -61,13 +61,13 @@ let g:ycm_extra_conf_globlist = ['~/Dev/gecko/*']
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_semantic_triggers = {
-  \   'python': [ 'import ' ]
-  \ }
+      \   'python': [ 'import ' ]
+      \ }
 
 let g:ycm_filetype_whitelist = {
-  \ '*': 1,
-  \ 'ycm_nofiletype': 1
-  \ }
+      \ '*': 1,
+      \ 'ycm_nofiletype': 1
+      \ }
 
 " Snippets are separated from the engine. Add this if you want them:
 
@@ -94,12 +94,20 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=darkgray
 set noshowmode
 set laststatus=2 
-set tabstop=4
 set autoindent
 set smartindent
-set shiftwidth=4
-set expandtab
 colorscheme dracula
 set encoding=utf-8 
 set fileencoding=utf-8
+
+
+
+" indentation
+"
+set cindent
+set cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1)
+set shiftwidth=2
+set softtabstop=2
+set textwidth=79
+
 

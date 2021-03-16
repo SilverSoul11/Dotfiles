@@ -24,7 +24,7 @@ set $menu j4-dmenu-desktop --dmenu='bemenu -i --nb "#181818" --fb "#262626" --nf
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /home/mazin/Pictures/870874.jpg fill
-output eDP-1 bg "/home/mazin/Pictures/rin.jpg" fill
+output eDP-1 bg "/home/mazin/Pictures/88454821_p0.png" fill
 output eDP-1 subpixel rgb
 
 # Example configuration:
@@ -61,11 +61,14 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
         middle_emulation enabled
         accel_profile flat
         tap_button_map lrm	
+        click_method button_areas
+        scroll_factor 0.8
 }
 
 input "TPPS/2 Elan TrackPoint" {
     accel_profile flat
-        pointer_accel -1	
+        pointer_accel 1
+
 }
 
 input * accel_profile flat
@@ -242,9 +245,9 @@ bar {
                 statusline #eeeeee
                 separator #666666
 #                  border  backgr. text
-                focused_workspace  #1d1d1d #ef9a9a   #000000
+                focused_workspace  #1d1d1d #ce93d8   #000000
                 active_workspace   #181818 #5f6767  #ffffff
-                inactive_workspace #181818 #181818  #888888
+                inactive_workspace #222222 #222222  #888888
                 urgent_workspace   #2f343a #ffcdd2  #000000
         }
 }
