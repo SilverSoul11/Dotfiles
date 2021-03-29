@@ -68,6 +68,7 @@ let g:ycm_extra_conf_globlist = ['~/Dev/gecko/*']
 " let g:ycm_confirm_extra_conf = 0
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_semantic_triggers = {
   \   'python': [ 'import ' ]
   \ }
@@ -90,7 +91,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-let g:ale_fixers = ['clangtidy']
+let g:ale_fixers = ['clang-format','clangtidy']
 " Write this in your vimrc file
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
