@@ -181,7 +181,7 @@ bar {
                 statusline #ffffff
                 separator #808080
 #                  border  backgr. text
-                focused_workspace  #303030 #e57373 #000000
+                focused_workspace  #e57373 #e57373 #000000
                 active_workspace   #303030 #303030 #ffffff
                 inactive_workspace #303030 #303030 #999999
                 urgent_workspace   #2f343a #900000 #ffffff
@@ -224,3 +224,4 @@ exec_always --no-startup-id picom --experimental-backends
 exec_always --no-startup-id unclutter
 ###############################################
 #GPU Overclock Settings
+#
