@@ -13,7 +13,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Noto Sans 12
+font pango:Noto Sans Medium 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -42,13 +42,14 @@ smart_borders on
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -fn "Noto Sans 12"
+bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#222222' -sb '#e57373' -sf '#000000' -fn 'Noto Sans Medium-12' -p 'dmenu%'"
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -106,14 +107,14 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "Terminal"
-set $ws2 "Firefox" 
-set $ws3 "Code"
-set $ws4 "Discord"
-set $ws5 "Music"
-set $ws6 "Calculator"
-set $ws7 "Video"
-set $ws8 "Misc"
+set $ws1 "1:Terminal"
+set $ws2 "2:Firefox" 
+set $ws3 "3:Code"
+set $ws4 "4:Discord"
+set $ws5 "5:Music"
+set $ws6 "6:Calculator"
+set $ws7 "7:Video"
+set $ws8 "8:Misc"
 
     # Switch to workspace
     bindsym $mod+1 workspace $ws1
@@ -149,10 +150,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -172,15 +173,17 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+	# configure workspaces
+	strip_workspace_numbers yes
 	position top
    colors {
-           background #080808
+           background #161616
            statusline #ffffff
            separator #808080
            #                  border  backgr. text
-           focused_workspace  #333333 #ce93d8 #000000
-           active_workspace   #333333 #333333 #ffffff
-           inactive_workspace #333333 #222222 #888888
+           focused_workspace  #343434 #e57373 #000000
+           active_workspace   #343434 #343434 #ffffff
+           inactive_workspace #343434 #343434 #888888
            urgent_workspace   #2f343a #900000 #ffffff
         }
 }
@@ -207,22 +210,19 @@ for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
 for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="Steam"] floating enable
 
-## Alsa Audio controls
-bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
-bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
-bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 
 ## Take screenshots
 bindsym --release $mod+z exec scrot -s
 
 
-bindsym $mod+Print exec picom -b --backend xrender && nvidia-settings --load-config-only --config=~/.nvidia-settings-rc 
 bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
-exec_always picom -b
+exec_always picom --experimental
 
-###############################################
-#GPU Overclock Settings
-exec_always nvidia-settings --load-config-only
-exec_always nvidia-settings -c :0 -a '[gpu:0]/GPUGraphicsClockOffsetAllPerformanceLevels=145'
-exec_always nvidia-settings -c :0 -a '[gpu:0]/GPUMemoryTransferRateOffsetAllPerformanceLevels=2000'
-
+# audio and brightness controls
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec light -U 5%
+bindsym XF86MonBrightnessUp exec light -A 5%
+exec autorandr -c
