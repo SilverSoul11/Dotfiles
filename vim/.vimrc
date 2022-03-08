@@ -32,6 +32,7 @@ Plug 'dracula/vim'
 Plug 'tlhr/anderson.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -104,9 +105,9 @@ set fileencoding=utf-8
 
 " indentation
 "
-set cindent
-set cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1)
-set shiftwidth=2
-set softtabstop=2
+" set cindent
+" set cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1)
+" set shiftwidth=2
+" set softtabstop=2
 set shortmess+=I
 
