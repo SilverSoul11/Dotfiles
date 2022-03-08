@@ -1,8 +1,8 @@
 font:
-  size: 13
+  size: 14
   normal:
     family: Iosevka Term
-    style: Regular
+    style: Medium
 
     # bold:
     #   family: Iosevka
@@ -50,5 +50,5 @@ colors:
     cyan:    '0x9aedfe'
     white:   '0xe6e6e6'
 
-background_opacity: 0.97
+window.opacity: 0.99
 
