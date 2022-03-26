@@ -210,22 +210,20 @@ for_window [class="^Steam$" title=".* CD key"] floating enable
 for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
 for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="Steam"] floating enable
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
 
-for_window [title="Preferences$"] floating enable
+## Alsa Audio controls
+bindsym XF86AudioRaiseVolume exec "amixer set Master -q 5%+"
+bindsym XF86AudioLowerVolume exec "amixer set Master -q 5%-"
+bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 
 ## Take screenshots
 bindsym --release $mod+z exec scrot -s
 
 
 bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
-exec_always picom --experimental
-
-# audio and brightness controls
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessDown exec light -U 5%
-bindsym XF86MonBrightnessUp exec light -A 5%
+exec_always --no-startup-id picom --experimental-backends
+exec_always --no-startup-id unclutter
+###############################################
+#GPU Overclock Settings
+#
+exec_always dispwin -L .color/icc/LG-34gn850-b\ \#1\ 2021-01-13\ 22-38\ D6500\ sRGB\ S\ XYZLUT+MTX.icc
