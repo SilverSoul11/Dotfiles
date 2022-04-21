@@ -21,6 +21,7 @@ window:
     x: 30
     y: 30
     dynamic_padding: true
+  opacity: 0.98
 
 colors:
   # Default colors
@@ -50,5 +51,4 @@ colors:
     cyan:    '0x9aedfe'
     white:   '0xe6e6e6'
 
-window.opacity: 0.99
 

@@ -24,15 +24,16 @@ Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ycm-core/YouCompleteMe', {'do':'./install.py'}
 Plug 'jiangmiao/auto-pairs'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'nvie/vim-flake8'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'dracula/vim'
-Plug 'tlhr/anderson.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
+Plug 'dense-analysis/ale'
+Plug 'bfrg/vim-cpp-modern'
+Plug 'tpope/vim-dispatch'
+Plug 'igankevich/mesonic',
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -69,9 +70,13 @@ let g:ycm_filetype_whitelist = {
       \ '*': 1,
       \ 'ycm_nofiletype': 1
       \ }
-
 " Snippets are separated from the engine. Add this if you want them:
+let g:ycm_show_diagnostics_ui = 0
 
+let g:ale_disable_lsp = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_fix_on_save = 1
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
