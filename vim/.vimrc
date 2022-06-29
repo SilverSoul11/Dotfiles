@@ -34,6 +34,7 @@ Plug 'dense-analysis/ale'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'tpope/vim-dispatch'
 Plug 'igankevich/mesonic',
+Plug 'vivien/vim-linux-coding-style',
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -96,7 +97,7 @@ let g:UltiSnipsEditSplit="vertical"
 " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 set number
 syntax on
-set colorcolumn=80
+set colorcolumn=81
 highlight ColorColumn ctermbg=darkgray
 set noshowmode
 set laststatus=2 
