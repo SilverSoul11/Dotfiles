@@ -40,6 +40,7 @@ Plug 'hrsh7th/cmp-path',
 Plug 'hrsh7th/cmp-cmdline',
 Plug 'hrsh7th/nvim-cmp',
 Plug 'SirVer/ultisnips',
+Plug 'sbdchd/neoformat',
 Plug 'quangnguyen30192/cmp-nvim-ultisnips',
 Plug 'junegunn/fzf.vim'
 
@@ -64,10 +65,10 @@ set encoding=utf-8
 set fileencoding=utf-8
 set completeopt=menu,menuone,noselect
 
+let g:UltiSnipsListSnippets="<C-m>"
 
 set shortmess+=I
 
-
 " lua stuff
 lua require('config')
-
+autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll

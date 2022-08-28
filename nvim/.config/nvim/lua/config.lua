@@ -1,12 +1,12 @@
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "rust" },
+  ensure_installed = { "c", "lua", "rust", "javascript" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
 
   -- List of parsers to ignore installing (for "all")
-  ignore_install = { "javascript" },
+  ignore_install = {},
 
   highlight = {
     -- `false` will disable the whole extension
@@ -26,6 +26,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+  local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
   local cmp = require'cmp'
 
   cmp.setup({
@@ -50,10 +51,10 @@ require'nvim-treesitter.configs'.setup {
       ['<Tab>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources({
+      { name = 'ultisnips' }, -- For ultisnips users.
       { name = 'nvim_lsp' },
       -- { name = 'vsnip' }, -- For vsnip users.
       -- { name = 'luasnip' }, -- For luasnip users.
-      { name = 'ultisnips' }, -- For ultisnips users.
       { name = 'path' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
     }, {
@@ -131,3 +132,29 @@ require('lspconfig')['clangd'].setup{
   on_attach = on_attach,
   flags = lsp_flags
 }
+
+require('lspconfig')['pyright'].setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = lsp_flags
+}
+
+require'lspconfig'.flow.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = lsp_flags
+}
+
+require('lspconfig').eslint.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = lsp_flags
+}
+
+
+require('lspconfig').tsserver.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = lsp_flags
+}
+
