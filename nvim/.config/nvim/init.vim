@@ -21,16 +21,14 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'itchyny/lightline.vim',
 Plug 'airblade/vim-gitgutter',
-Plug 'jiangmiao/auto-pairs',
+Plug 'windwp/nvim-autopairs',
 Plug 'tpope/vim-surround',
 Plug 'tpope/vim-commentary',
 Plug 'dracula/vim',
 Plug 'honza/vim-snippets',
-Plug 'sheerun/vim-polyglot',
 Plug 'tpope/vim-dispatch',
 Plug 'igankevich/mesonic',
 Plug 'nvim-treesitter/nvim-treesitter',
-Plug 'vivien/vim-linux-coding-style',
 Plug 'neovim/nvim-lspconfig',
 Plug 'hrsh7th/nvim-cmp',
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -42,6 +40,7 @@ Plug 'hrsh7th/nvim-cmp',
 Plug 'SirVer/ultisnips',
 Plug 'sbdchd/neoformat',
 Plug 'quangnguyen30192/cmp-nvim-ultisnips',
+Plug 'ray-x/lsp_signature.nvim',
 Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
@@ -65,10 +64,8 @@ set encoding=utf-8
 set fileencoding=utf-8
 set completeopt=menu,menuone,noselect
 
-let g:UltiSnipsListSnippets="<C-m>"
 
 set shortmess+=I
 
 " lua stuff
 lua require('config')
-autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
