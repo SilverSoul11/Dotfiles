@@ -26,6 +26,8 @@ exec_always ~/.fehbg
 #Needed for i3-gaps
 #hide_edge_borders both
 default_border pixel 7
+default_floating_border pixel 7
+for_window [class=".*"] border pixel 7
 gaps inner 15 
 gaps outer 10
 smart_gaps on
@@ -105,6 +107,13 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+c focus child
 
+# set no border
+bindsym $mod+u border pixel 7
+
+bindsym $mod+Shift+z exec /home/mazin/Dev/scripts/mon-brightness.py -S 10
+bindsym $mod+Shift+x exec /home/mazin/Dev/scripts/mon-brightness.py -A 10
+
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:Terminal"
@@ -113,7 +122,7 @@ set $ws3 "3:Code"
 set $ws4 "4:Discord"
 set $ws5 "5:Music"
 set $ws6 "6:Calculator"
-set $ws7 "7:Video"
+set $ws7 "7:Mail"
 set $ws8 "8:Misc"
 
     # Switch to workspace
@@ -182,9 +191,9 @@ bar {
                 statusline #ffffff
                 separator #808080
 #                  border  backgr. text
-                focused_workspace  #e57373 #e57373 #000000
-                active_workspace   #555555 #555555 #ffffff
-                inactive_workspace #333333 #333333 #000000
+                focused_workspace  #ff867a #ff867a #000000
+                active_workspace   #999999 #999999 #ffffff
+                inactive_workspace #999999 #999999 #000000
                 urgent_workspace   #2f343a #900000 #ffffff
         }
 }
@@ -193,10 +202,10 @@ bar {
 exec xrdb merge .Xresources
 
 # Colors
-client.focused          #808080 #808080 #000000 #dddddd
+client.focused          #999999 #999999 #000000 #dddddd
 client.focused_inactive #333333 #333333 #c6ff00 #ffffff
 client.unfocused        #444444 #444444 #888888 #292d2e
-client.urgent           #2f343a #900000 #ffffff #900000
+client.urgent           #2f343a #808080 #000000 #dddddd
 
 
 #steam enable floating
@@ -218,12 +227,14 @@ bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN
 
 
 ## Take screenshots
-bindsym --release $mod+z exec scrot -s
+bindsym --release $mod+z exec maim  --select "/home/$USER/Pictures/$(date)"
 
 
 bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
-exec_always --no-startup-id picom --experimental-backends
+# exec_always --no-startup-id picom --experimental-backends
 exec_always --no-startup-id unclutter
+exec_always --no-startup-id xrandr --rate 160
+exec --no-startup-id easyeffects --gapplication-service
 ###############################################
 #GPU Overclock Settings
 #

@@ -41,6 +41,8 @@ Plug 'SirVer/ultisnips',
 Plug 'sbdchd/neoformat',
 Plug 'quangnguyen30192/cmp-nvim-ultisnips',
 Plug 'ray-x/lsp_signature.nvim',
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' },
+Plug 'lervag/vimtex',
 Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
@@ -63,6 +65,8 @@ colorscheme dracula
 set encoding=utf-8 
 set fileencoding=utf-8
 set completeopt=menu,menuone,noselect
+filetype plugin indent on
+let g:vimtex_view_method = 'zathura'
 
 
 set shortmess+=I

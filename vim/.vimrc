@@ -19,10 +19,8 @@ call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
 
-Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'ycm-core/YouCompleteMe', {'do':'./install.py'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -30,10 +28,9 @@ Plug 'dracula/vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
-Plug 'dense-analysis/ale'
-Plug 'bfrg/vim-cpp-modern'
 Plug 'tpope/vim-dispatch'
 Plug 'igankevich/mesonic',
+Plug 'nvim-treesitter/nvim-treesitter',
 Plug 'vivien/vim-linux-coding-style',
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -117,3 +114,4 @@ set fileencoding=utf-8
 " set softtabstop=2
 set shortmess+=I
 
+lua require('config')

@@ -147,6 +147,30 @@ require('lspconfig').tsserver.setup {
     flags = lsp_flags
 }
 
+require('lspconfig').texlab.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = lsp_flags,
+    settings = {
+        texlab = {
+            auxDirectory = ".",
+            bibtexFormatter = "texlab",
+            build = {
+                args = {"-pdf", "-interaction=nonstopmode", "-synctex=1", "%f"},
+                executable = "latexmk",
+                forwardSearchAfter = false,
+                onSave = false
+            },
+            chktex = {onEdit = false, onOpenAndSave = false},
+            diagnosticsDelay = 300,
+            formatterLineLength = 80,
+            forwardSearch = {args = {}},
+            latexFormatter = "latexindent",
+            latexindent = {modifyLineBreaks = false}
+        }
+    }
+}
+
 cfg = {
     debug = false, -- set to true to enable debug logging
     log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
