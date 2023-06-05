@@ -13,7 +13,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Noto Sans Display Medium 13
+font pango:Noto Sans Display Medium 14
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -219,7 +219,7 @@ bindsym --release $mod+z exec scrot -s
 
 
 bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
-exec_always picom --experimental
+# exec_always picom --experimental
 
 # audio and brightness controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
