@@ -30,7 +30,6 @@ Plug 'tpope/vim-dispatch',
 Plug 'igankevich/mesonic',
 Plug 'nvim-treesitter/nvim-treesitter',
 Plug 'neovim/nvim-lspconfig',
-Plug 'hrsh7th/nvim-cmp',
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'hrsh7th/cmp-nvim-lsp',
 Plug 'hrsh7th/cmp-buffer',
@@ -38,11 +37,13 @@ Plug 'hrsh7th/cmp-path',
 Plug 'hrsh7th/cmp-cmdline',
 Plug 'hrsh7th/nvim-cmp',
 Plug 'SirVer/ultisnips',
+" Plug 'L3MON4D3/LuaSnip',
 Plug 'sbdchd/neoformat',
+" Plug 'saadparwaiz1/cmp_luasnip',
 Plug 'quangnguyen30192/cmp-nvim-ultisnips',
 Plug 'ray-x/lsp_signature.nvim',
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' },
-Plug 'lervag/vimtex',
+Plug 'jakewvincent/texmagic.nvim',
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
@@ -66,8 +67,8 @@ set encoding=utf-8
 set fileencoding=utf-8
 set completeopt=menu,menuone,noselect
 filetype plugin indent on
-let g:vimtex_view_method = 'zathura'
-
+let g:tex_flavor = 'latex'
+let g:livepreview_previewer = 'zathura'
 
 set shortmess+=I
 

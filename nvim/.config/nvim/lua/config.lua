@@ -27,16 +27,14 @@ require'nvim-treesitter.configs'.setup {
 }
 
 require("nvim-autopairs").setup {}
-local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 local cmp = require 'cmp'
 
 cmp.setup({
     snippet = {
-        -- REQUIRED - you must specify a snippet engine
         expand = function(args)
             -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
             -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+            -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
             vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
         end
     },
@@ -48,15 +46,16 @@ cmp.setup({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<Tab>'] = cmp.mapping.confirm({select = false}) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item()),
+        ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item()),
+        ['<CR>'] = cmp.mapping.confirm({select = true})
     }),
     sources = cmp.config.sources({
-        {name = 'ultisnips'}, -- For ultisnips users.
         {name = 'nvim_lsp'}, -- { name = 'vsnip' }, -- For vsnip users.
         -- { name = 'luasnip' }, -- For luasnip users.
-        {name = 'path'} -- For ultisnips users.
         -- { name = 'snippy' }, -- For snippy users.
+        {name = 'ultisnips'}, -- For ultisnips users.
+        {name = 'path'} -- For ultisnips users.
     }, {{name = 'buffer'}})
 })
 
@@ -147,26 +146,28 @@ require('lspconfig').tsserver.setup {
     flags = lsp_flags
 }
 
+require('texmagic').setup {
+    engines = {
+        pdflatex = {
+            executable = "latexmk",
+            args = {
+                "-pdflatex", "-interaction=nonstopmode", "-synctex=1",
+                "-outdir=.build", "-pv", "%f"
+            },
+            isContinuous = false,
+            onSave = true
+        }
+    }
+}
+
 require('lspconfig').texlab.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
+    cmd = {"texlab"},
+    filetypes = {"bib", "plaintex", "tex"},
     settings = {
         texlab = {
-            auxDirectory = ".",
-            bibtexFormatter = "texlab",
-            build = {
-                args = {"-pdf", "-interaction=nonstopmode", "-synctex=1", "%f"},
-                executable = "latexmk",
-                forwardSearchAfter = false,
-                onSave = false
-            },
-            chktex = {onEdit = false, onOpenAndSave = false},
-            diagnosticsDelay = 300,
-            formatterLineLength = 80,
-            forwardSearch = {args = {}},
-            latexFormatter = "latexindent",
-            latexindent = {modifyLineBreaks = false}
+            rootDirectory = nil,
+            build = _G.TeXMagicBuildConfig,
+            forwardSearch = {executable = "zathura", args = {"%p"}}
         }
     }
 }
@@ -200,7 +201,7 @@ cfg = {
     floating_window_off_y = 0, -- adjust float windows y position. e.g -2 move window up 2 lines; 2 move down 2 lines
     -- can be either number or function, see examples
 
-    close_timeout = 4000, -- close floating window after ms when laster parameter is entered
+    -- close_timeout = 4000, -- close floating window after ms when laster parameter is entered
     fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
     hint_enable = true, -- virtual hint enable
     hint_prefix = "", -- for parameter, NOTE: for the terminal not support emoji, might crash
