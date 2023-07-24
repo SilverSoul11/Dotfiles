@@ -28,6 +28,7 @@ require'nvim-treesitter.configs'.setup {
 
 require("nvim-autopairs").setup {}
 local cmp = require 'cmp'
+-- local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
 cmp.setup({
     snippet = {
@@ -46,9 +47,9 @@ cmp.setup({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item()),
-        ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item()),
-        ['<CR>'] = cmp.mapping.confirm({select = true})
+        ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Select})),
+        ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select})),
+        ['<Tab>'] = cmp.mapping.confirm({select = false, behavior = cmp.ConfirmBehavior.Replace})
     }),
     sources = cmp.config.sources({
         {name = 'nvim_lsp'}, -- { name = 'vsnip' }, -- For vsnip users.
