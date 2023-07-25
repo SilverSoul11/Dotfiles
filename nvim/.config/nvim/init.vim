@@ -30,7 +30,6 @@ Plug 'tpope/vim-dispatch',
 Plug 'igankevich/mesonic',
 Plug 'nvim-treesitter/nvim-treesitter',
 Plug 'neovim/nvim-lspconfig',
-Plug 'hrsh7th/nvim-cmp',
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'hrsh7th/cmp-nvim-lsp',
 Plug 'hrsh7th/cmp-buffer',
@@ -41,6 +40,8 @@ Plug 'SirVer/ultisnips',
 Plug 'sbdchd/neoformat',
 Plug 'quangnguyen30192/cmp-nvim-ultisnips',
 Plug 'ray-x/lsp_signature.nvim',
+Plug 'jakewvincent/texmagic.nvim',
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
@@ -63,7 +64,12 @@ colorscheme dracula
 set encoding=utf-8 
 set fileencoding=utf-8
 set completeopt=menu,menuone,noselect
-
+filetype plugin indent on
+let g:tex_flavor = 'latex'
+let g:livepreview_previewer = 'zathura'
+let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
+let g:UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
+let g:UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
 
 set shortmess+=I
 
