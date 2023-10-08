@@ -47,9 +47,16 @@ cmp.setup({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Select})),
-        ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select})),
-        ['<Tab>'] = cmp.mapping.confirm({select = false, behavior = cmp.ConfirmBehavior.Replace})
+        ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item({
+            behavior = cmp.SelectBehavior.Select
+        })),
+        ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item({
+            behavior = cmp.SelectBehavior.Select
+        })),
+        ['<Tab>'] = cmp.mapping.confirm({
+            select = true,
+            behavior = cmp.ConfirmBehavior.Replace
+        })
     }),
     sources = cmp.config.sources({
         {name = 'nvim_lsp'}, -- { name = 'vsnip' }, -- For vsnip users.
@@ -155,8 +162,8 @@ require('texmagic').setup {
                 "-pdflatex", "-interaction=nonstopmode", "-synctex=1",
                 "-outdir=.build", "-pv", "%f"
             },
-            isContinuous = false,
-            onSave = true
+            isContinuous = true
+            -- onSave = true
         }
     }
 }
@@ -171,6 +178,10 @@ require('lspconfig').texlab.setup {
             forwardSearch = {executable = "zathura", args = {"%p"}}
         }
     }
+}
+
+require'lspconfig'.rust_analyzer.setup {
+    settings = {['rust-analyzer'] = {diagnostics = {enable = false}}}
 }
 
 cfg = {
