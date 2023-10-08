@@ -8,6 +8,8 @@ require'nvim-treesitter.configs'.setup {
     -- List of parsers to ignore installing (for "all")
     ignore_install = {},
 
+    indent = { enable = false },
+
     highlight = {
         -- `false` will disable the whole extension
         enable = true,
@@ -17,6 +19,7 @@ require'nvim-treesitter.configs'.setup {
         -- the name of the parser)
         -- list of language that will be disabled
         disable = {},
+
 
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
         -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
@@ -47,9 +50,16 @@ cmp.setup({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Select})),
-        ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select})),
-        ['<Tab>'] = cmp.mapping.confirm({select = false, behavior = cmp.ConfirmBehavior.Replace})
+        ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item({
+            behavior = cmp.SelectBehavior.Select
+        })),
+        ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item({
+            behavior = cmp.SelectBehavior.Select
+        })),
+        ['<Tab>'] = cmp.mapping.confirm({
+            select = true,
+            behavior = cmp.ConfirmBehavior.Replace
+        })
     }),
     sources = cmp.config.sources({
         {name = 'nvim_lsp'}, -- { name = 'vsnip' }, -- For vsnip users.
@@ -66,6 +76,8 @@ cmp.setup.filetype('gitcommit', {
         {name = 'cmp_git'} -- You can specify the `cmp_git` source if you were installed it.
     }, {{name = 'buffer'}})
 })
+
+require"lsp_signature".setup(cfg)
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
@@ -155,8 +167,8 @@ require('texmagic').setup {
                 "-pdflatex", "-interaction=nonstopmode", "-synctex=1",
                 "-outdir=.build", "-pv", "%f"
             },
-            isContinuous = false,
-            onSave = true
+            isContinuous = true
+            -- onSave = true
         }
     }
 }
@@ -171,6 +183,13 @@ require('lspconfig').texlab.setup {
             forwardSearch = {executable = "zathura", args = {"%p"}}
         }
     }
+}
+
+require'lspconfig'.rust_analyzer.setup {
+    settings = {['rust-analyzer'] = {diagnostics = {enable = false}}},
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = lsp_flags
 }
 
 cfg = {
@@ -197,7 +216,7 @@ cfg = {
     -- will set to true when fully tested, set to false will use whichever side has more space
     -- this setting will be helpful if you do not want the PUM and floating win overlap
 
-    floating_window_off_x = 1, -- adjust float windows x position. 
+    floating_window_off_x = 1, -- adjust float windows x position.
     -- can be either a number or function
     floating_window_off_y = 0, -- adjust float windows y position. e.g -2 move window up 2 lines; 2 move down 2 lines
     -- can be either number or function, see examples
@@ -229,4 +248,9 @@ cfg = {
     select_signature_key = nil, -- cycle to next signature, e.g. '<M-n>' function overloading
     move_cursor_key = nil -- imap, use nvim_set_current_win to move cursor between current win and floating
 }
-require"lsp_signature".setup(cfg)
+require("ibl").setup()
+
+ require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+
