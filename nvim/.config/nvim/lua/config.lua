@@ -158,19 +158,7 @@ require('lspconfig').tsserver.setup {
     flags = lsp_flags
 }
 
-require('texmagic').setup {
-    engines = {
-        pdflatex = {
-            executable = "latexmk",
-            args = {
-                "-pdflatex", "-interaction=nonstopmode", "-synctex=1",
-                "-outdir=.build", "-pv", "%f"
-            },
-            isContinuous = true
-            -- onSave = true
-        }
-    }
-}
+require('texmagic').setup {}
 
 require('lspconfig').texlab.setup {
     cmd = {"texlab"},
@@ -248,7 +236,16 @@ cfg = {
     move_cursor_key = nil -- imap, use nvim_set_current_win to move cursor between current win and floating
 }
 
-require("ibl").setup()
+require("ibl").setup{
+	indent = {
+		char = "┇",
+	},
+
+	scope = {
+		show_start =  false,
+		show_end = false,
+	}
+}
 
 require("nvim-surround").setup({
     -- Configuration here, or leave empty to use defaults

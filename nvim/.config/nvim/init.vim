@@ -61,12 +61,15 @@ set encoding=utf-8
 set fileencoding=utf-8
 set completeopt=menu,menuone,noselect
 set shortmess+=I
+set cursorline
+set cursorlineopt=number
+set list
+set listchars+=eol:↴,space:.,tab:...
 let g:tex_flavor = 'latex'
 let g:livepreview_previewer = 'zathura'
 let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
 let g:UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
 let g:UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
-
 
 " lua stuff
 lua require('config')
