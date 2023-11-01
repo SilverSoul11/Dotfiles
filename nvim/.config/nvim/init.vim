@@ -24,7 +24,7 @@ Plug 'airblade/vim-gitgutter',
 Plug 'windwp/nvim-autopairs',
 Plug 'kylechui/nvim-surround',
 Plug 'tpope/vim-commentary',
-Plug 'dracula/vim',
+Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'honza/vim-snippets',
 Plug 'tpope/vim-dispatch',
 Plug 'nvim-treesitter/nvim-treesitter',
@@ -53,7 +53,6 @@ let g:lightline = {
       \ }
 
 colorscheme dracula
-highlight ColorColumn
 set relativenumber number
 set colorcolumn=81
 set noshowmode
@@ -62,12 +61,15 @@ set encoding=utf-8
 set fileencoding=utf-8
 set completeopt=menu,menuone,noselect
 set shortmess+=I
+set cursorline
+set cursorlineopt=number
+set list
+set listchars+=eol:↴,space:.,tab:...
 let g:tex_flavor = 'latex'
 let g:livepreview_previewer = 'zathura'
 let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
 let g:UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
 let g:UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
-
 
 " lua stuff
 lua require('config')

@@ -8,7 +8,7 @@ require'nvim-treesitter.configs'.setup {
     -- List of parsers to ignore installing (for "all")
     ignore_install = {},
 
-    indent = { enable = false },
+    indent = {enable = false},
 
     highlight = {
         -- `false` will disable the whole extension
@@ -19,7 +19,6 @@ require'nvim-treesitter.configs'.setup {
         -- the name of the parser)
         -- list of language that will be disabled
         disable = {},
-
 
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
         -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
@@ -159,19 +158,7 @@ require('lspconfig').tsserver.setup {
     flags = lsp_flags
 }
 
-require('texmagic').setup {
-    engines = {
-        pdflatex = {
-            executable = "latexmk",
-            args = {
-                "-pdflatex", "-interaction=nonstopmode", "-synctex=1",
-                "-outdir=.build", "-pv", "%f"
-            },
-            isContinuous = true
-            -- onSave = true
-        }
-    }
-}
+require('texmagic').setup {}
 
 require('lspconfig').texlab.setup {
     cmd = {"texlab"},
@@ -248,9 +235,19 @@ cfg = {
     select_signature_key = nil, -- cycle to next signature, e.g. '<M-n>' function overloading
     move_cursor_key = nil -- imap, use nvim_set_current_win to move cursor between current win and floating
 }
-require("ibl").setup()
 
- require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
+require("ibl").setup{
+	indent = {
+		char = "┇",
+	},
+
+	scope = {
+		show_start =  false,
+		show_end = false,
+	}
+}
+
+require("nvim-surround").setup({
+    -- Configuration here, or leave empty to use defaults
+})
 
