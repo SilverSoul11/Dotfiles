@@ -19,7 +19,8 @@
 
 " Make sure you use single quotes
 
-Plug 'itchyny/lightline.vim',
+Plug 'nvim-lualine/lualine.nvim',
+Plug 'nvim-tree/nvim-web-devicons',
 Plug 'airblade/vim-gitgutter',
 Plug 'windwp/nvim-autopairs',
 Plug 'kylechui/nvim-surround',
@@ -28,8 +29,10 @@ Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'honza/vim-snippets',
 Plug 'tpope/vim-dispatch',
 Plug 'nvim-treesitter/nvim-treesitter',
+Plug 'nvim-treesitter/nvim-treesitter-textobjects',
 Plug 'neovim/nvim-lspconfig',
 Plug 'junegunn/fzf',
+Plug 'junegunn/fzf.vim',
 Plug 'hrsh7th/cmp-nvim-lsp',
 Plug 'hrsh7th/cmp-buffer',
 Plug 'hrsh7th/cmp-path',
@@ -41,18 +44,18 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips',
 Plug 'ray-x/lsp_signature.nvim',
 Plug 'lukas-reineke/indent-blankline.nvim',
 Plug 'jakewvincent/texmagic.nvim',
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'junegunn/fzf.vim'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' },
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' },
+Plug 'miikanissi/modus-themes.nvim',
+Plug 'bluz71/vim-moonfly-colors', { 'as': 'moonfly' },
+Plug 'igankevich/mesonic',
 
 " Initialize plugin system
  call plug#end()
 
 " ========================================================================
-let g:lightline = {
-      \ 'colorscheme': 'dracula',
-      \ }
+colorscheme modus_vivendi
 
-colorscheme dracula
 set relativenumber number
 set colorcolumn=81
 set noshowmode
@@ -64,7 +67,7 @@ set shortmess+=I
 set cursorline
 set cursorlineopt=number
 set list
-set listchars+=eol:↴,space:.,tab:...
+set listchars+=eol:↴
 let g:tex_flavor = 'latex'
 let g:livepreview_previewer = 'zathura'
 let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
