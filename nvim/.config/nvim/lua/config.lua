@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
     -- A list of parser names, or "all"
-    ensure_installed = {"c", "lua", "rust", "javascript"},
+    ensure_installed = "all",
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -44,6 +44,25 @@ cmp.setup({
     window = {
         -- completion = cmp.config.window.bordered(),
         -- documentation = cmp.config.window.bordered(),
+        completion = {
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            col_offset = -3,
+            side_padding = 0
+        }
+    },
+    formatting = {
+        fields = {"kind", "abbr", "menu"},
+        format = function(entry, vim_item)
+            local kind = require("lspkind").cmp_format({
+                mode = "symbol_text",
+                maxwidth = 50
+            })(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", {trimempty = true})
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+            return kind
+        end
     },
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -104,6 +123,9 @@ local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+    -- uncomment to turn off semantic tokens
+    -- client.server_capabilities.semanticTokensProvider = nil
+
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = {noremap = true, silent = true, buffer = bufnr}
@@ -153,6 +175,18 @@ require('lspconfig').eslint.setup {
 }
 
 require('lspconfig').tsserver.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = lsp_flags
+}
+
+require('lspconfig').tsserver.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = lsp_flags
+}
+
+require('lspconfig').lua_ls.setup {
     capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags
@@ -236,58 +270,159 @@ cfg = {
     move_cursor_key = nil -- imap, use nvim_set_current_win to move cursor between current win and floating
 }
 
-require("ibl").setup{
-	indent = {
-		char = "┇",
-	},
+require("ibl").setup {
+    indent = {char = "┇"},
 
-	scope = {
-		show_start =  false,
-		show_end = false,
-	}
+    scope = {show_start = false, show_end = false}
 }
 
 require("nvim-surround").setup({
     -- Configuration here, or leave empty to use defaults
 })
 
-require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'modus',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
+require('gitsigns').setup()
+
+require("catppuccin").setup({
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+        light = "latte",
+        dark = "mocha"
     },
-    ignore_focus = {},
-    always_divide_middle = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
+    transparent_background = false, -- disables setting the background color.
+    show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+    term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
+    dim_inactive = {
+        enabled = false, -- dims the background color of inactive window
+        shade = "dark",
+        percentage = 0.15 -- percentage of the shade to apply to the inactive window
+    },
+    no_italic = false, -- Force no italic
+    no_bold = false, -- Force no bold
+    no_underline = false, -- Force no underline
+    styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+        comments = {"italic"}, -- Change the style of comments
+        conditionals = {"italic"},
+        loops = {},
+        functions = {},
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {"bold"},
+        properties = {},
+        types = {},
+        operators = {}
+    },
+    color_overrides = {
+        mocha = {
+            base = "#000000",
+            -- mantle = "#000000",
+            -- crust = "#000000",
+            surface0 = "#1e1e1e",
+            -- subtext0 = "#ffffff",
+            -- subtext1 = "#ffffff",
+            text = "#ffffff"
+        },
+    },
+    custom_highlights = function(colors)
+        return {
+            Comment = {fg = "#989898"},
+            LineNr = {fg = "#989898", bg = "#1e1e1e"},
+            CursorLineNr = {fg = "#ffffff", bg = "#535353"},
+            CmpItemKindSnippet = {fg = C.base, bg = C.mauve},
+            CmpItemKindKeyword = {fg = C.base, bg = C.red},
+            CmpItemKindText = {fg = C.base, bg = C.teal},
+            CmpItemKindMethod = {fg = C.base, bg = C.blue},
+            CmpItemKindConstructor = {fg = C.base, bg = C.blue},
+            CmpItemKindFunction = {fg = C.base, bg = C.blue},
+            CmpItemKindFolder = {fg = C.base, bg = C.blue},
+            CmpItemKindModule = {fg = C.base, bg = C.blue},
+            CmpItemKindConstant = {fg = C.base, bg = C.peach},
+            CmpItemKindField = {fg = C.base, bg = C.green},
+            CmpItemKindProperty = {fg = C.base, bg = C.green},
+            CmpItemKindEnum = {fg = C.base, bg = C.green},
+            CmpItemKindUnit = {fg = C.base, bg = C.green},
+            CmpItemKindClass = {fg = C.base, bg = C.yellow},
+            CmpItemKindVariable = {fg = C.base, bg = C.flamingo},
+            CmpItemKindFile = {fg = C.base, bg = C.blue},
+            CmpItemKindInterface = {fg = C.base, bg = C.yellow},
+            CmpItemKindColor = {fg = C.base, bg = C.red},
+            CmpItemKindReference = {fg = C.base, bg = C.red},
+            CmpItemKindEnumMember = {fg = C.base, bg = C.red},
+            CmpItemKindStruct = {fg = C.base, bg = C.blue},
+            CmpItemKindValue = {fg = C.base, bg = C.peach},
+            CmpItemKindEvent = {fg = C.base, bg = C.blue},
+            CmpItemKindOperator = {fg = C.base, bg = C.blue},
+            CmpItemKindTypeParameter = {fg = C.base, bg = C.blue},
+            CmpItemKindCopilot = {fg = C.base, bg = C.teal}
+        }
+    end,
+    integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        treesitter = true,
+        semantic_tokens = true,
+        native_lsp = {
+            enabled = true,
+            virtual_text = {
+                errors = {"italic"},
+                hints = {"italic"},
+                warnings = {"italic"},
+                information = {"italic"}
+            },
+            underlines = {
+                errors = {"underline"},
+                hints = {"underline"},
+                warnings = {"underline"},
+                information = {"underline"}
+            },
+            inlay_hints = {background = true}
+        },
+        indent_blankline = {
+            enabled = true,
+            -- scope_color = "text", -- catppuccin color (eg. `lavender`) Default: text
+            colored_indent_levels = false
+        },
+
+        notify = false,
+        mini = {enabled = true, indentscope_color = ""}
+        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     }
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = {}
+})
+
+vim.cmd.colorscheme "catppuccin"
+
+require('lualine').setup {
+    options = {
+        icons_enabled = true,
+        component_separators = {left = '', right = ''},
+        section_separators = {left = '', right = ''},
+        disabled_filetypes = {statusline = {}, winbar = {}},
+        ignore_focus = {},
+        always_divide_middle = true,
+        globalstatus = false,
+        refresh = {statusline = 1000, tabline = 1000, winbar = 1000}
+    },
+    sections = {
+        lualine_a = {'mode'},
+        lualine_b = {'branch', 'diff', 'diagnostics'},
+        lualine_c = {'filename'},
+        lualine_x = {'encoding', 'fileformat', 'filetype'},
+        lualine_y = {'progress'},
+        lualine_z = {'location'}
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {'filename'},
+        lualine_x = {'location'},
+        lualine_y = {},
+        lualine_z = {}
+    },
+    tabline = {},
+    winbar = {},
+    inactive_winbar = {},
+    extensions = {}
 }
+

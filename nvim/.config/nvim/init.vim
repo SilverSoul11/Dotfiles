@@ -21,7 +21,8 @@
 
 Plug 'nvim-lualine/lualine.nvim',
 Plug 'nvim-tree/nvim-web-devicons',
-Plug 'airblade/vim-gitgutter',
+Plug 'lewis6991/gitsigns.nvim',
+Plug 'onsails/lspkind.nvim',
 Plug 'windwp/nvim-autopairs',
 Plug 'kylechui/nvim-surround',
 Plug 'tpope/vim-commentary',
@@ -45,17 +46,18 @@ Plug 'ray-x/lsp_signature.nvim',
 Plug 'lukas-reineke/indent-blankline.nvim',
 Plug 'jakewvincent/texmagic.nvim',
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' },
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' },
-Plug 'miikanissi/modus-themes.nvim',
+" Plug 'miikanissi/modus-themes.nvim',
+Plug 'ishan9299/modus-theme-vim',
+Plug 'EdenEast/nightfox.nvim',
 Plug 'bluz71/vim-moonfly-colors', { 'as': 'moonfly' },
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' },
 Plug 'igankevich/mesonic',
 
 " Initialize plugin system
  call plug#end()
 
 " ========================================================================
-colorscheme modus_vivendi
-
+set encoding=utf-8
 set relativenumber number
 set colorcolumn=81
 set noshowmode
@@ -66,13 +68,18 @@ set completeopt=menu,menuone,noselect
 set shortmess+=I
 set cursorline
 set cursorlineopt=number
-set list
-set listchars+=eol:↴
+set listchars+=space:.,eol:↴
+syntax off
 let g:tex_flavor = 'latex'
 let g:livepreview_previewer = 'zathura'
 let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
 let g:UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
 let g:UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 " lua stuff
 lua require('config')
