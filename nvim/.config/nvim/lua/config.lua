@@ -315,7 +315,7 @@ require("catppuccin").setup({
     },
     color_overrides = {
         mocha = {
-            base = "#000000",
+            base = "#121212",
             -- mantle = "#000000",
             -- crust = "#000000",
             surface0 = "#1e1e1e",
@@ -392,6 +392,8 @@ require("catppuccin").setup({
 })
 
 vim.cmd.colorscheme "catppuccin"
+
+require('fzf-lua').setup({'fzf-vim'})
 
 require('lualine').setup {
     options = {
