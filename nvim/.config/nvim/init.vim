@@ -19,17 +19,20 @@
 
 " Make sure you use single quotes
 
-Plug 'itchyny/lightline.vim',
-Plug 'airblade/vim-gitgutter',
+Plug 'nvim-lualine/lualine.nvim',
+Plug 'nvim-tree/nvim-web-devicons',
+Plug 'lewis6991/gitsigns.nvim',
+Plug 'onsails/lspkind.nvim',
 Plug 'windwp/nvim-autopairs',
 Plug 'kylechui/nvim-surround',
 Plug 'tpope/vim-commentary',
-Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'honza/vim-snippets',
 Plug 'tpope/vim-dispatch',
 Plug 'nvim-treesitter/nvim-treesitter',
+Plug 'nvim-treesitter/nvim-treesitter-textobjects',
 Plug 'neovim/nvim-lspconfig',
 Plug 'junegunn/fzf',
+Plug 'junegunn/fzf.vim',
 Plug 'hrsh7th/cmp-nvim-lsp',
 Plug 'hrsh7th/cmp-buffer',
 Plug 'hrsh7th/cmp-path',
@@ -41,18 +44,19 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips',
 Plug 'ray-x/lsp_signature.nvim',
 Plug 'lukas-reineke/indent-blankline.nvim',
 Plug 'jakewvincent/texmagic.nvim',
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'junegunn/fzf.vim'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' },
+Plug 'sainnhe/sonokai',
+" Plug 'miikanissi/modus-themes.nvim',
+Plug 'ishan9299/modus-theme-vim',
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' },
+Plug 'j-hui/fidget.nvim',
+Plug 'igankevich/mesonic',
 
 " Initialize plugin system
  call plug#end()
 
 " ========================================================================
-let g:lightline = {
-      \ 'colorscheme': 'dracula',
-      \ }
-
-colorscheme dracula
+set encoding=utf-8
 set relativenumber number
 set colorcolumn=81
 set noshowmode
@@ -63,13 +67,18 @@ set completeopt=menu,menuone,noselect
 set shortmess+=I
 set cursorline
 set cursorlineopt=number
-set list
-set listchars+=eol:↴,space:.,tab:...
+set listchars+=space:.,eol:↴
+syntax off
 let g:tex_flavor = 'latex'
 let g:livepreview_previewer = 'zathura'
 let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
 let g:UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
 let g:UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 " lua stuff
 lua require('config')
