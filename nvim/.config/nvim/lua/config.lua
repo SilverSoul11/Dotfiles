@@ -45,7 +45,7 @@ cmp.setup({
         -- completion = cmp.config.window.bordered(),
         -- documentation = cmp.config.window.bordered(),
         completion = {
-            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            -- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             col_offset = -3,
             side_padding = 0
         }
@@ -316,8 +316,8 @@ require("catppuccin").setup({
     color_overrides = {
         mocha = {
             base = "#121212",
-            -- mantle = "#000000",
-            -- crust = "#000000",
+            mantle = "#1e1e1e",
+            crust = "#000000",
             surface0 = "#1e1e1e",
             -- subtext0 = "#ffffff",
             -- subtext1 = "#ffffff",
@@ -392,6 +392,9 @@ require("catppuccin").setup({
 })
 
 vim.cmd.colorscheme "catppuccin"
+
+-- vim.api.nvim_set_hl(0, 'PmenuSel', { bg = "#1e1e1e" })
+-- vim.api.nvim_set_hl(0, 'PmenuKindSel', { bg = "#1e1e1e" })
 
 require('fzf-lua').setup({'fzf-vim'})
 
