@@ -23,10 +23,11 @@ Plug 'nvim-lualine/lualine.nvim',
 Plug 'nvim-tree/nvim-web-devicons',
 Plug 'lewis6991/gitsigns.nvim',
 Plug 'onsails/lspkind.nvim',
+Plug 'j-hui/fidget.nvim',
+Plug 'yorickpeterse/nvim-pqf',
 Plug 'windwp/nvim-autopairs',
 Plug 'kylechui/nvim-surround',
 Plug 'tpope/vim-commentary',
-Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'honza/vim-snippets',
 Plug 'tpope/vim-dispatch',
 Plug 'nvim-treesitter/nvim-treesitter',
@@ -46,10 +47,7 @@ Plug 'ray-x/lsp_signature.nvim',
 Plug 'lukas-reineke/indent-blankline.nvim',
 Plug 'jakewvincent/texmagic.nvim',
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' },
-" Plug 'miikanissi/modus-themes.nvim',
-Plug 'EdenEast/nightfox.nvim',
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' },
-Plug 'igankevich/mesonic',
 
 " Initialize plugin system
  call plug#end()
@@ -57,6 +55,7 @@ Plug 'igankevich/mesonic',
 " ========================================================================
 set encoding=utf-8
 set relativenumber number
+set ttyfast
 set colorcolumn=81
 set noshowmode
 set laststatus=2
