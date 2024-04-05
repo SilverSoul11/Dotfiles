@@ -1,3 +1,53 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- require("lazy").setup(plugins, opts)
+
+require("lazy").setup({
+"nvim-lualine/lualine.nvim",
+"nvim-tree/nvim-web-devicons",
+"lewis6991/gitsigns.nvim",
+"j-hui/fidget.nvim",
+"onsails/lspkind.nvim",
+"yorickpeterse/nvim-pqf",
+"windwp/nvim-autopairs",
+"kylechui/nvim-surround",
+"tpope/vim-commentary",
+"honza/vim-snippets",
+"tpope/vim-dispatch",
+"nvim-treesitter/nvim-treesitter",
+"nvim-treesitter/nvim-treesitter-textobjects",
+"neovim/nvim-lspconfig",
+"junegunn/fzf",
+"ibhagwan/fzf-lua",
+"hrsh7th/cmp-nvim-lsp",
+"hrsh7th/cmp-buffer",
+"hrsh7th/cmp-path",
+"hrsh7th/cmp-cmdline",
+"hrsh7th/nvim-cmp",
+"SirVer/ultisnips",
+"sbdchd/neoformat",
+"quangnguyen30192/cmp-nvim-ultisnips",
+"ray-x/lsp_signature.nvim",
+"lukas-reineke/indent-blankline.nvim",
+"jakewvincent/texmagic.nvim",
+"xuhdev/vim-latex-live-preview",
+"EdenEast/nightfox.nvim",
+{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+"igankevich/mesonic",
+})
+
+
 require'nvim-treesitter.configs'.setup {
     -- A list of parser names, or "all"
     ensure_installed = "all",
@@ -396,7 +446,7 @@ vim.cmd.colorscheme "catppuccin"
 -- vim.api.nvim_set_hl(0, 'PmenuSel', { bg = "#1e1e1e" })
 -- vim.api.nvim_set_hl(0, 'PmenuKindSel', { bg = "#1e1e1e" })
 
-require('fzf-lua').setup({'fzf-vim'})
+require('fzf-lua').setup({'max-perf'})
 
 require('lualine').setup {
     options = {
