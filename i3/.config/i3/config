@@ -107,6 +107,12 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+c focus child
 
+# read 1 character and mark the current window with this character
+bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+
+# read 1 character and go to the window with the character
+bindsym $mod+grave exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+
 # set no border
 bindsym $mod+u border pixel 7
 
@@ -191,7 +197,7 @@ bar {
                 statusline #ffffff
                 separator #808080
 #                  border  backgr. text
-                focused_workspace  #ff867a #ff867a #000000
+                focused_workspace  #B3E5FC #B3E5FC #000000
                 active_workspace   #999999 #999999 #ffffff
                 inactive_workspace #999999 #999999 #000000
                 urgent_workspace   #2f343a #900000 #ffffff
