@@ -13,7 +13,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Noto Sans Display Medium 14
+font pango:Noto Sans Display Medium 13
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -21,12 +21,14 @@ font pango:Noto Sans Display Medium 14
 
 #set wallpaper
 #exec_always feh --bg-fill /home/mazin/Downloads/967275.png fill
-# exec_always ~/.fehbg
+exec_always ~/.fehbg
 
 #Needed for i3-gaps
 #hide_edge_borders both
-for_window [class="^.*"] border pixel 7
-gaps inner 15
+default_border pixel 7
+default_floating_border pixel 7
+for_window [class=".*"] border pixel 7
+gaps inner 15 
 gaps outer 10
 smart_gaps on
 smart_borders on
@@ -48,7 +50,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec "dmenu_run -i -nf '#989898' -nb '#0d0e1c' -sb '#4a4f69' -sf '#ffffff' -fn 'Noto Sans Medium-12'" 
+bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -i -nf '#F8F8F2' -nb '#222222' -sb '#e57373' -sf '#000000' -fn 'Noto Sans Medium-12'" 
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -105,6 +107,19 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+c focus child
 
+# read 1 character and mark the current window with this character
+bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+
+# read 1 character and go to the window with the character
+bindsym $mod+grave exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+
+# set no border
+bindsym $mod+u border pixel 7
+
+bindsym $mod+Shift+z exec /home/mazin/Dev/scripts/mon-brightness.py -S 10
+bindsym $mod+Shift+x exec /home/mazin/Dev/scripts/mon-brightness.py -A 10
+
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:Terminal"
@@ -113,7 +128,7 @@ set $ws3 "3:Code"
 set $ws4 "4:Discord"
 set $ws5 "5:Music"
 set $ws6 "6:Calculator"
-set $ws7 "7:Video"
+set $ws7 "7:Mail"
 set $ws8 "8:Misc"
 
     # Switch to workspace
@@ -172,19 +187,20 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
-	# configure workspaces
-	strip_workspace_numbers yes
-	position top
-   colors {
-           background #0d0e1c
-           statusline #ffffff
-           separator #808080
-           #                  border  backgr. text
-           focused_workspace  #4a4f69 #4a4f69 #ffffff
-           active_workspace   #1d2235 #1d2235 #ffffff
-           inactive_workspace #1d2235 #1d2235 #989898
-           urgent_workspace   #7030af #7030af #ffffff
+    status_command SCRIPT_DIR=/usr/lib/i3blocks i3blocks
+        i3bar_command i3bar -t
+        position top
+        strip_workspace_numbers yes
+        tray_output none
+        colors {
+            background #121212
+                statusline #ffffff
+                separator #808080
+#                  border  backgr. text
+                focused_workspace  #B3E5FC #B3E5FC #000000
+                active_workspace   #999999 #999999 #ffffff
+                inactive_workspace #999999 #999999 #000000
+                urgent_workspace   #2f343a #900000 #ffffff
         }
 }
 
@@ -192,11 +208,10 @@ bar {
 exec xrdb merge .Xresources
 
 # Colors
-# class                 border  backgr. text    indicator child_border
-client.focused          #808080 #4a4f69 #000000 #dddddd
-client.focused_inactive #333333 #2b3045 #c6ff00 #ffffff
-client.unfocused        #333333 #2b3045  #888888 #292d2e
-client.urgent           #2f343a #900000 #ffffff #900000
+client.focused          #999999 #999999 #000000 #dddddd
+client.focused_inactive #333333 #333333 #c6ff00 #ffffff
+client.unfocused        #444444 #444444 #888888 #292d2e
+client.urgent           #2f343a #808080 #000000 #dddddd
 
 
 #steam enable floating
@@ -210,23 +225,23 @@ for_window [class="^Steam$" title=".* CD key"] floating enable
 for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
 for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="Steam"] floating enable
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
 
-for_window [title="Preferences$"] floating enable
+## alsa  controls
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+
 
 ## Take screenshots
-bindsym --release $mod+z exec scrot -s
+bindsym --release $mod+z exec maim  --select "/home/$USER/Pictures/$(date)"
 
 
 bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
-# exec_always picom --experimental
-
-# audio and brightness controls
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessDown exec "brightnessctl s 5%-"
-bindsym XF86MonBrightnessUp exec "brightnessctl s +5%"
-exec autorandr -c -f
+# exec_always --no-startup-id picom --experimental-backends
+exec_always --no-startup-id unclutter
+exec_always --no-startup-id xrandr --rate 160
+exec --no-startup-id easyeffects --gapplication-service
+###############################################
+#GPU Overclock Settings
+#
+exec_always dispwin -L /home/mazin/.color/icc/34gn850b#1 2022-04-17 08-51 0.3127x 0.329y sRGB S XYZLUT+MTX.icc
