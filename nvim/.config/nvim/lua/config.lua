@@ -464,7 +464,7 @@ vim.cmd.colorscheme("catppuccin")
 -- vim.api.nvim_set_hl(0, 'PmenuSel', { bg = "#1e1e1e" })
 -- vim.api.nvim_set_hl(0, 'PmenuKindSel', { bg = "#1e1e1e" })
 
-require("fzf-lua").setup({ "max-perf" })
+require("fzf-lua").setup({ "fzf-vim" })
 
 require("lualine").setup({
 	options = {
