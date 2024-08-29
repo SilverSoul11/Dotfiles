@@ -188,21 +188,24 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     status_command SCRIPT_DIR=/usr/lib/i3blocks i3blocks
-        i3bar_command i3bar -t
+        i3bar_command none
         position top
         strip_workspace_numbers yes
         tray_output none
         colors {
-            background #121212
+            	background #121212
                 statusline #ffffff
                 separator #808080
-#                  border  backgr. text
-                focused_workspace  #B3E5FC #B3E5FC #000000
+		#      		   border  backgr. text
+                focused_workspace  #FFF9C4 #FFF9C4 #424242
                 active_workspace   #999999 #999999 #ffffff
                 inactive_workspace #999999 #999999 #000000
                 urgent_workspace   #2f343a #900000 #ffffff
         }
 }
+
+exec_always --no-startup-id ~/.config/polybar/launch.sh --shades
+bindsym $mod+p exec polybar-msg cmd toggle
 
 # Set the wallpaper using feh
 exec xrdb merge .Xresources

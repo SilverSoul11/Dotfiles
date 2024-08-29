@@ -22,11 +22,10 @@ require("lazy").setup({
 	"yorickpeterse/nvim-pqf",
 	"windwp/nvim-autopairs",
 	"kylechui/nvim-surround",
-	-- "tpope/vim-commentary",
-	-- "honza/vim-snippets",
-	-- "tpope/vim-dispatch",
+	"tpope/vim-commentary",
+	"tpope/vim-dispatch",
 	"nvim-treesitter/nvim-treesitter",
-	-- "nvim-treesitter/nvim-treesitter-textobjects",
+	"nvim-treesitter/nvim-treesitter-textobjects",
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -268,7 +267,10 @@ require("lspconfig").texlab.setup({
 	settings = {
 		texlab = {
 			rootDirectory = nil,
-			build = _G.TeXMagicBuildConfig,
+			build = {
+				executable = 'tectonic',
+          			 args = { '-X', 'compile', '%f', '--synctex', '--keep-logs', '--keep-intermediates' }
+			},
 			forwardSearch = { executable = "zathura", args = { "%p" } },
 		},
 	},
@@ -338,9 +340,8 @@ cfg = {
 	move_cursor_key = nil, -- imap, use nvim_set_current_win to move cursor between current win and floating
 }
 
-require("ibl").setup({
+require"ibl".setup({
 	indent = { char = "┇" },
-
 	scope = { show_start = false, show_end = false },
 })
 
@@ -464,7 +465,7 @@ vim.cmd.colorscheme("catppuccin")
 -- vim.api.nvim_set_hl(0, 'PmenuSel', { bg = "#1e1e1e" })
 -- vim.api.nvim_set_hl(0, 'PmenuKindSel', { bg = "#1e1e1e" })
 
-require("fzf-lua").setup({ "max-perf" })
+require("fzf-lua").setup({ "fzf-vim" })
 
 require("lualine").setup({
 	options = {
